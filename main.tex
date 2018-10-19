@@ -1,0 +1,108 @@
+\documentclass[11pt]{article} % paper, article, report
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+
+%\usepackage{natbib}
+\usepackage[backend=bibtex,style=numeric,sorting=none]{biblatex}
+\addbibresource{references.bib} 
+
+\usepackage{graphicx}
+\graphicspath{{images/}}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+
+%\setlength{\parindent}{0pt}
+
+\title{COMP90043 Cryptography and Security: Project Proposal}
+%\author{My Name}
+\date{}
+
+\begin{document}
+
+%\maketitle
+
+\begin{center}
+    \vspace*{1cm}
+    
+    \LARGE
+    \textbf{COMP90043: Cryptography and Security}
+    
+    \vspace{0.3cm}
+    \LARGE
+    Project Proposal: Digital Signature Scheme Evaluation
+\end{center}
+
+
+\section{Introduction}
+
+Digital signatures indicate mathematical techniques used to validate the authenticity of a message, document or software, which can ensure that the signer send the document and other parties cannot modify it. It is widely used to add authentication, integrity and non-repudiation for digital document.
+
+Several digital schemes have been proven to provide valid authentication for signed paper, among them, we choose three (RSA, ECC and Lamport signature) to evaluate and compare for the research project. Our aim is to observe characteristic and performance of each scheme based on our evaluation metrics and, discuss suitable application domain for each of them. 
+
+\subsection{Members}
+
+Our team member information are as follows.
+\\
+Group Leader: San Kho Lin
+
+\vspace{0.2cm}
+
+\begin{tabular}{ |p{3cm}|p{3cm}|p{6cm}|  }
+\hline
+\textbf{Name} & \textbf{Student ID} & \textbf{Email} \\
+\hline
+San Kho Lin & 829463 & sanl1@student.unimelb.edu.au \\
+\hline
+Yiru Pan & 889832 & yirup@student.unimelb.edu.au \\
+\hline
+Tenglun Tan & 876792 & tenglunt@student.unimelb.edu.au \\
+\hline
+Zhuohan Xie & 871089 & zhuohanx@student.unimelb.edu.au \\
+\hline
+\end{tabular}
+
+\section{Background}
+
+RSA\cite{Rivest:1978:MOD:359340.359342} is the well-known implementation of public key cryptography and digital signature scheme. It is based on the factorization of two large prime numbers so that it is not computationally feasible for anyone to factor $n$ in such that $n = p \cdot q$ -- also known as RSA problem. We will use RSA as our baseline for formulating evaluation metrics.
+
+Elliptic Curve Cryptography (ECC) is another efficient public key cryptography technique. Particularly, we will focus on ECDSA\cite{Kerry13fipspub} which is based on the difficulty of solving discrete logarithm problem in Elliptic Curve group -- also known as elliptic curve discrete logarithm problem. We will also investigate EdDSA\cite{Bernstein2012}, the popular variant implementation that has used twisted Edwards curves modifications and parameter tuning for top performance. ECC is well-known for providing greater security with smaller key sizes. This feature is desirable for saving computation resources and bandwidth in securing mobile devices and sensor networks traffic. It is a trending digital signature scheme such that cryptocurrencies like Bitcoin have made use of it. However, ECC discrete logarithms computation is known to be broken by Shor's algorithm\cite{Shor:1997:PAP:264393.264406} on a hypothetical quantum computer.
+
+Lamport one-time signature scheme\cite{lamport} is an efficient method for constructing a digital signature. One time means that a signature can be used only once due to the algorithm design. When verifying the signature, it reveals a part of the private key. Lamport signatures can be built from any cryptographically secure one-way hash function. It has been the subject of increased attention recently because it has characteristics like fast verification and resistant to quantum computing. The digital signature schemes like RSA, ECC rely on the computation and algorithmic complexity which is expected to be broken when a quantum computer is practically implemented.
+
+\section{Proposal}
+
+In this project, we propose to explore three digital signature schemes: RSA, ECC, and Lamport signature scheme. The main idea of choosing these three schemes is their uniqueness in technique and mathematical approaches. We will study their mathematical foundations for generation of keys and verification of digital signatures. We will perform experiments to measure their performance such as timing private/public keys generation, signing and verifying the data packet. We will also discuss their security trade-offs, complexity and the domain it can apply.
+\\
+\\
+\noindent For the purpose of evaluation and quality implementation, we aim to utilize the following tools and library:
+
+\vspace{0.2cm}
+
+\begin{tabular}{ |p{3cm}|p{8cm}|  }
+\hline
+\textbf{Name} & \textbf{Link} \\
+\hline
+OpenSSL & https://www.openssl.org \\
+\hline
+NaCl & https://nacl.cr.yp.to \\
+\hline
+Botan & https://botan.randombit.net \\
+\hline
+CrypTool & https://www.cryptool.org/en/jcryptool \\
+\hline
+Bouncy Castle & https://www.bouncycastle.org \\
+\hline
+SageMath & http://www.sagemath.org \\
+\hline
+Magma & http://magma.maths.usyd.edu.au/magma/ \\
+\hline
+\end{tabular}
+
+%\newpage
+%\renewcommand{\thepage}{}
+%\bibliographystyle{plain}
+%\bibliography{references}
+\printbibliography
+\end{document}
